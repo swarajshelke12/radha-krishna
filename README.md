@@ -1,56 +1,104 @@
-# Project Overview
+<div align="center">
 
-This project is a comprehensive software solution designed to streamline [insert specific purpose, e.g., recipe management, design collaboration, etc.]. It combines intuitive interfaces with robust backend functionality to deliver a seamless user experience.
+# 🪔 Radha Krishna — Pure Vegetarian
+**The Cinematic Landing Page Experience**
 
-## Purpose
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Live-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-black?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Performance-Ultra%20Fast-blueviolet?style=for-the-badge" />
+</p>
 
-The goal of this project is to serve the Radha Krishna Pure Veg restaurant with an immersive online presence that captures its rich heritage and culinary excellence. It aims to address [specific pain points or challenges] through [technologies/methods used].
+An immersive, zero-dependency, ultra-premium static web application designed to capture the rich heritage and culinary excellence of **Radha Krishna**, an iconic pure vegetarian restaurant serving North & South Indian delicacies in Dighi, Pune since 2010.
 
-## Key Features
+[**Explore the Magic**](#features) • [**Technical Architecture**](#architecture) • [**Setup Guide**](#getting-started)
 
-- Feature 1: [Description of feature 1]
-- Feature 2: [Description of feature 2]
-- Feature 3: [Description of feature 3]
-- [Add additional features as needed]
+</div>
 
-## Installation
+---
 
-1. Clone the repository: `git clone [repository URL]`
-2. Install dependencies: `npm install` or `pip install -r requirements.txt`
-3. Configure environment variables in `.env` file
-4. Launch the application: `npm start` or `python app.py`
+## ✦ The Aesthetic Vision
+We completely overhauled the digital presence of Radha Krishna to move away from standard flat templates and embrace a **Cinematic, Dark & Moody** design language. 
 
-## Usage
+The site utilizes a stunning **warm cream (#DEDBC8) on deep black (#000000)** palette, accentuated with bespoke **"Liquid Glass"** frosted UI components, beautiful serif typography (`Instrument Serif`), and dynamic micro-animations to create a feeling of absolute luxury and devotion to culinary craft.
 
-- [Example 1: Usage scenario or command]
-- [Example 2: Another common use case]
-- [Include screenshots or diagrams if applicable, e.g., `![Screenshot](images/butter_paneer_dish.png)`]
+<br>
 
-## Contributing
+## ✨ Key Features & Experiences
 
-Contributions are welcome! Please follow these guidelines:
+### 🎬 Immersive Scroll-Bound Canvas Video
+The centerpiece of the landing page is a **270-frame sequence rendering on an HTML5 `<canvas>`**. As the user scrolls, Javascript smoothly interpolates and draws frames linked exactly to the user's scroll depth, creating a buttery-smooth background video experience without the heavy load of actual video files.
 
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature-name`
-3. Make your changes and commit: `git commit -am 'Update: feature-name'`
-4. Push to your branch and open a pull request
+### 🧊 Liquid Glass UI Architecture
+Cards and navigation components are built using advanced CSS backdrop filters and precise `-webkit-mask-composite` techniques to create breathtaking "liquid glass" gradients with inner and outer glows, elevating the visual hierarchy above the moving background.
 
-## License
+### 📱 Flawless Mobile Responsiveness
+A custom-built sticky bottom CTA bar and a beautiful floating glass slide-down drawer overlay (complete with animated hamburger-to-close cross transitions) guarantee a premium experience on every smartphone and tablet.
 
-This project is licensed under the [License Name] - see the LICENSE file for details.
+### 🎭 Theatrical Typography & Flow
+Powered by Google Fonts `Almarai` (geometric cleanliness) and `Instrument Serif` (accent italic elegance). Smooth `IntersectionObserver` reveal animations ensure every element glides into place exactly when the user is ready to see it.
 
-## Technologies
+---
 
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+## 🏗️ Architecture & Philosophy
 
-## Directory Structure
+**Zero Dependencies.** We believe in raw performance. 
+There is no React, no Tailwind, no Node.js required to run this site in production. It is a masterclass in modern **Vanilla HTML5, CSS3, and ES6 Javascript**. 
 
-- `images/`: Contains UI asset visuals including [mention specific files like butter_paneer_dish.png]
-- `src/`: Main application source code
-- `docs/`: Project documentation
+Everything is bundled into a single document structure to eliminate render-blocking requests, ensuring immediate load times and maximum SEO viability.
 
-## Contact
+| Component | Implementation |
+| :--- | :--- |
+| **Structure** | Semantic HTML5 |
+| **Styling** | Native CSS (Variables, Flexbox, CSS Grid, Advanced Masks) |
+| **Interactivity** | Vanilla JS (IntersectionObserver, Canvas API, requestAnimationFrame) |
+| **Animations** | CSS Transitions & Transforms |
 
-For questions or collaboration opportunities, contact [your name] at [email/handle].
+---
+
+## 🚀 Getting Started
+
+Since this project has absolutely zero build steps or dependencies, launching it is instant.
+
+### 1. Clone & Run
+```bash
+# Clone the repository
+git clone https://github.com/KhushiSarda156/radha-krishna-page.git
+
+# Navigate to the project directory
+cd radha-krishna-page
+```
+
+### 2. View Locally
+Simply open the `index.html` file in your favorite modern browser:
+- **macOS:** `open index.html`
+- **Windows:** `start index.html`
+- **Linux:** `xdg-open index.html`
+*(Alternatively, use an extension like VSCode Live Server for hot-reloading during development).*
+
+---
+
+## 📂 Directory Structure
+
+```text
+radha-krishna-page/
+├── index.html         # The core application (HTML structure, CSS styles, JS logic)
+├── Frames/            # 270 zero-padded JPG frames for the canvas scroll animation
+├── images/            # Static imagery and assets
+└── favicon.svg        # Scalable vector favicon
+```
+
+---
+
+## 📍 Visit Us
+
+**Radha Krishna Pure Vegetarian**
+Alandi Road, Dighi, Pune, Maharashtra
+**Call for Delivery:** +91 78750 06807
+**Hours:** 9:30 AM – 11:00 PM Daily
+
+<div align="center">
+  <br>
+  <i>"Pure Ingredients. Traditional Alchemy."</i><br>
+  Designed with passion for exceptional gastronomy.
+</div>
