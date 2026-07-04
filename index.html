@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radha Krishna Pure Veg — Legendary Vegetarian Kitchen, Dighi Pune</title>
+  <meta name="description" content="Experience legendary North & South Indian vegetarian cuisine in Dighi, Pune. Fresh ingredients, traditional recipes, family warmth. Open 9:30AM–11PM." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+/* ─────────────────────────────────────
+   DESIGN SYSTEM & TOKENS
+───────────────────────────────────── */
+:root {
+  --black: #030202;
+  --surface: rgba(12, 10, 9, 0.65);
+  --surface-solid: #0c0a09;
+  --gold: #d4a343;
+  --gold-bright: #f0c265;
+  --cream: #f4eee3;
+  --cream-dim: rgba(244, 238, 227, 0.7);
+  --cream-faint: rgba(244, 238, 227, 0.3);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+
+/* ─────────────────────────────────────
+   RESET & BASE STYLES
+───────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background-color: var(--black);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* ─────────────────────────────────────
+   CONTINUOUS BACKGROUND SCROLL CANVAS
+───────────────────────────────────── */
+#bg-canvas-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background-color: var(--black);
+  overflow: hidden;
+}
+#bg-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 20%, rgba(3, 2, 2, 0.75) 85%),
+              linear-gradient(to bottom, rgba(3, 2, 2, 0.4) 0%, transparent 15%, transparent 85%, rgba(3, 2, 2, 0.8) 100%);
+}
+
+/* ─────────────────────────────────────
+   PROGRESS BAR
+───────────────────────────────────── */
+#loader-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+#loader-bar.done {
+  opacity: 0;
+}
+#loader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright), var(--gold));
+  box-shadow: 0 0 8px var(--gold);
+  transition: width 0.2s ease;
+}
+
+/* ─────────────────────────────────────
+   TYPOGRAPHY & UTILITIES
+───────────────────────────────────── */
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background-color: var(--gold);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+.section-body {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--cream-dim);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────── */
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  transition: all 0.4s ease;
+}
+#nav.scrolled {
+  padding: 16px 48px;
+  background: rgba(3, 2, 2, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212, 163, 67, 0.12);
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+.logo-main {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.logo-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+}
+.nav-link {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  padding: 8px 16px;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: var(--gold);
+  transition: width 0.3s;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--cream);
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 40%;
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 99px;
+  border: 1px solid rgba(212, 163, 67, 0.35);
+  background: rgba(212, 163, 67, 0.08);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  transition: all 0.3s ease;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+.mobile-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-btn span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ─────────────────────────────────────
+   CONTENT LAYOUT
+───────────────────────────────────── */
+.section {
+  position: relative;
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ─────────────────────────────────────
+   HERO SECTION (CONCISE & PRECISE)
+───────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  padding-top: 140px;
+  justify-content: center;
+  text-align: center;
+}
+.hero-content {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(244, 238, 227, 0.04);
+  border: 1px solid rgba(244, 238, 227, 0.1);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-badge .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--gold);
+}
+#hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+#hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+.hero-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--cream-dim);
+  max-width: 480px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 8px 24px rgba(212, 163, 67, 0.2);
+}
+.btn-primary:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(212, 163, 67, 0.3);
+}
+.btn-secondary {
+  border: 1px solid rgba(244, 238, 227, 0.2);
+  color: var(--cream);
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────
+   MARQUEE
+───────────────────────────────────── */
+.marquee {
+  background: var(--gold);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  gap: 40px;
+  animation: scrollMarquee 25s linear infinite;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+@keyframes scrollMarquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ─────────────────────────────────────
+   PHILOSOPHY (CLEAN GLASS CARDS)
+───────────────────────────────────── */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  width: 100%;
+}
+.phil-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.phil-card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 238, 227, 0.08);
+  padding: 24px;
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+.phil-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.phil-card h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.phil-card p {
+  font-size: 0.8rem;
+  color: var(--cream-dim);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ─────────────────────────────────────
+   SIGNATURE MENU (EXACTLY 3 KEY DISHES)
+───────────────────────────────────── */
+#menu {
+  flex-direction: column;
+  justify-content: center;
+  gap: 48px;
+}
+.menu-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+.menu-item {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 238, 227, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+.menu-item:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+.menu-img-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.menu-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.menu-item:hover .menu-img-container img {
+  transform: scale(1.08);
+}
+.menu-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(3, 2, 2, 0.8);
+  border: 1px solid rgba(212, 163, 67, 0.3);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.menu-details {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+.menu-details h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.menu-details p {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.menu-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(244, 238, 227, 0.06);
+}
+.menu-price {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────
+   REVIEWS & STORIES
+───────────────────────────────────── */
+#reviews {
+  flex-direction: column;
+  justify-content: center;
+  gap: 48px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+.review-card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 238, 227, 0.08);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+.review-text {
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--cream-dim);
+  font-weight: 300;
+}
+.review-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(244, 238, 227, 0.06);
+  padding-top: 12px;
+}
+.review-user {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.review-label {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ─────────────────────────────────────
+   LOCATION & VISIT
+───────────────────────────────────── */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  width: 100%;
+  align-items: center;
+}
+.location-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.location-card {
+  display: flex;
+  gap: 16px;
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 238, 227, 0.08);
+  padding: 20px;
+  border-radius: 14px;
+}
+.location-icon {
+  font-size: 1.25rem;
+  color: var(--gold);
+}
+.location-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.location-val {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.location-map-container {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 238, 227, 0.1);
+  height: 340px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.location-map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(90%) hue-rotate(180deg) contrast(100%) brightness(95%);
+}
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+footer {
+  background-color: var(--black);
+  border-top: 1px solid rgba(244, 238, 227, 0.06);
+  padding: 60px 48px 40px;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-text {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--cream-faint);
+}
+.footer-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--cream-faint);
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(244, 238, 227, 0.03);
+}
+
+/* ─────────────────────────────────────
+   MOBILE BOTTOM BAR
+───────────────────────────────────── */
+.mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(3, 2, 2, 0.9);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(244, 238, 227, 0.08);
+  padding: 10px 16px;
+  gap: 10px;
+  z-index: 999;
+}
+.mobile-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.mb-primary {
+  background: var(--gold);
+  color: var(--black);
+}
+.mb-secondary {
+  border: 1px solid rgba(244, 238, 227, 0.15);
+}
+
+/* ─────────────────────────────────────
+   REVEAL SYSTEM (Static - No Scroll Fade/Shifts)
+───────────────────────────────────── */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVE DESIGN
+───────────────────────────────────── */
+@media (max-width: 1023px) {
+  #nav {
+    padding: 18px 24px;
+  }
+  .nav-links, .nav-cta {
+    display: none !important;
+  }
+  .mobile-btn {
+    display: flex;
+  }
+  .section {
+    padding: 80px 24px;
+  }
+  .philosophy-grid, .location-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .menu-grid, .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  footer {
+    padding: 40px 24px 80px;
+  }
+  .mobile-bar {
+    display: flex;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER BAR -->
+<div id="loader-bar"><div id="loader-bar-fill"></div></div>
+
+<!-- BACKGROUND CANVAS -->
+<div id="bg-canvas-container">
+  <canvas id="bg-canvas"></canvas>
+</div>
+<div class="bg-vignette"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-main">Radha Krishna</div>
+    <div class="logo-sub">Pure Vegetarian</div>
+  </a>
+  <ul class="nav-links">
+    <li><button class="nav-link active" data-target="hero">Home</button></li>
+    <li><button class="nav-link" data-target="philosophy">Philosophy</button></li>
+    <li><button class="nav-link" data-target="menu">Signature</button></li>
+    <li><button class="nav-link" data-target="reviews">Reviews</button></li>
+    <li><button class="nav-link" data-target="location">Visit</button></li>
+  </ul>
+  <a href="tel:+917875006807" class="nav-cta">Call To Order</a>
+  <button class="mobile-btn" id="menu-toggle" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- 1. HERO SECTION (Precise & Concise) -->
+<section id="hero" class="section">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span>Alandi Road, Dighi</span>
+    </div>
+    <h1>Pure Taste.<br><em>Traditional Soul.</em></h1>
+    <p class="hero-desc">
+      Experience iconic North &amp; South Indian vegetarian kitchen specialties in Dighi since 2010. Prepared daily with premium ingredients and hand-ground spices.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:+917875006807" class="btn btn-primary">Call to Order</a>
+      <a href="https://maps.app.goo.gl/SzH3da3MRw1kmgxo9" target="_blank" rel="noreferrer" class="btn btn-secondary">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- 2. PHILOSOPHY SECTION -->
+<section id="philosophy" class="section">
+  <div class="philosophy-grid">
+    <div class="reveal">
+      <div class="eyebrow">Our Philosophy</div>
+      <h2 class="section-title" style="margin-top: 12px">Purely Vegetarian.<br><em>Truly Authentic.</em></h2>
+      <p class="section-body" style="margin-top: 16px">
+        Located near holy Alandi, we prepare every recipe with absolute integrity. From farm-fresh paneer to cold-pressed oils, we choose quality above everything.
+      </p>
+    </div>
+    <div class="phil-cards reveal">
+      <div class="phil-card">
+        <h3>100% Pure Veg</h3>
+        <p>A strictly vegetarian kitchen serving pure delicacies since day one.</p>
+      </div>
+      <div class="phil-card">
+        <h3>Daily Fresh</h3>
+        <p>We craft our food daily using local produce and home-ground spice mixes.</p>
+      </div>
+      <div class="phil-card">
+        <h3>AC Vibe</h3>
+        <p>Cozy air-conditioned seating perfect for families and trekkers.</p>
+      </div>
+      <div class="phil-card">
+        <h3>Fast Service</h3>
+        <p>Fast and warm service keeping our regulars happy all week long.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SIGNATURE MENU SECTION -->
+<section id="menu" class="section">
+  <div class="menu-header reveal">
+    <div class="eyebrow">Gastronomy Showcase</div>
+    <h2 class="section-title" style="margin-top: 8px">Our Best <em>Plates</em></h2>
+    <p class="section-body" style="max-width: 440px; margin-top: 8px">
+      A concise selection of our highest-voted signature dishes prepared daily.
+    </p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item reveal">
+      <div class="menu-img-container">
+        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=900&auto=format&fit=crop" alt="Paneer Toofani" loading="lazy" />
+        <span class="menu-badge">Chef Specialty</span>
+      </div>
+      <div class="menu-details">
+        <h3>Paneer Toofani</h3>
+        <p>A rich, fiery cottage cheese curry infused with dry-roasted spices and a touch of traditional charcoal smoke.</p>
+        <div class="menu-footer">
+          <span class="menu-price">Alandi Road Favorite</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item reveal">
+      <div class="menu-img-container">
+        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=900&auto=format&fit=crop" alt="Veg Dum Biryani" loading="lazy" />
+        <span class="menu-badge">Traditional Dum</span>
+      </div>
+      <div class="menu-details">
+        <h3>Veg Dum Biryani</h3>
+        <p>Fragrant premium Basmati rice layered with fresh seasonal vegetables and saffron, slow-cooked under pressure.</p>
+        <div class="menu-footer">
+          <span class="menu-price">Slow Cooked Daily</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-item reveal">
+      <div class="menu-img-container">
+        <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=900&auto=format&fit=crop" alt="Masala Dosa" loading="lazy" />
+        <span class="menu-badge">South Indian Icon</span>
+      </div>
+      <div class="menu-details">
+        <h3>Masala Dosa</h3>
+        <p>Thin and ultra-crispy golden rice crepe filled with tempered potato masala. Served with pure coconut chutney.</p>
+        <div class="menu-footer">
+          <span class="menu-price">Trekker Favorite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. REVIEWS SECTION -->
+<section id="reviews" class="section">
+  <div class="menu-header reveal">
+    <div class="eyebrow">Guest Stories</div>
+    <h2 class="section-title" style="margin-top: 8px">Loved By <em>Locals</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <p class="review-text">"Paneer Toofani is absolutely unmatched in Dighi! We order this curry every weekend for our family dinners."</p>
+      <div class="review-card-footer">
+        <span class="review-user">Saurabh Deshmukh</span>
+        <span class="review-label">Regular Guest</span>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <p class="review-text">"Very humble staff and extremely clean kitchen. The South Indian breakfast here is authentic and delicious."</p>
+      <div class="review-card-footer">
+        <span class="review-user">Anjali Patwardhan</span>
+        <span class="review-label">Family Dine-in</span>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <p class="review-text">"Perfect stop after hiking Datta Gad Hill. The crispy masala dosa and fresh filter coffee are absolutely divine."</p>
+      <div class="review-card-footer">
+        <span class="review-user">Rajesh Gaikwad</span>
+        <span class="review-label">Weekend Trekker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. LOCATION & VISIT -->
+<section id="location" class="section">
+  <div class="location-grid">
+    <div class="location-cards reveal">
+      <div class="eyebrow">Location</div>
+      <h2 class="section-title">Join Us <em>Today</em></h2>
+      <div class="location-card" style="margin-top: 16px">
+        <div class="location-icon">📍</div>
+        <div>
+          <div class="location-title">Address</div>
+          <div class="location-val">Alandi Road, Dighi, Pune</div>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-icon">🕐</div>
+        <div>
+          <div class="location-title">Kitchen Hours</div>
+          <div class="location-val">9:30 AM – 11:00 PM Daily</div>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-icon">📞</div>
+        <div>
+          <div class="location-title">Phone</div>
+          <div class="location-val">+91 78750 06807</div>
+        </div>
+      </div>
+    </div>
+    <div class="location-map-container reveal">
+      <iframe
+        title="Map Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.1694987305255!2d73.87400891489576!3d18.603261887324726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7e8e3c1a1ab%3A0x7a4b2b2b4b2b2b2b!2sDighi%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <div class="logo-main">Radha Krishna</div>
+      <div class="logo-sub">Pure Vegetarian</div>
+      <p class="footer-text" style="max-width: 320px; margin-top: 12px">
+        Serving authentic taste and clean hospitality in Dighi, Pune since 2010.
+      </p>
+    </div>
+    <div>
+      <div class="logo-sub" style="color: var(--cream-faint)">Contact</div>
+      <p class="footer-text" style="margin-top: 8px">Alandi Road, Dighi, Pune</p>
+      <p class="footer-text" style="margin-top: 4px; font-weight: 700; color: var(--gold)">+91 78750 06807</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Radha Krishna Pure Veg.</span>
+    <span>Alandi Road, Dighi, Pune</span>
+  </div>
+</footer>
+
+<!-- MOBILE BOTTOM BAR -->
+<div class="mobile-bar">
+  <a href="tel:+917875006807" class="mb-primary">Call to Order</a>
+  <a href="https://maps.app.goo.gl/SzH3da3MRw1kmgxo9" target="_blank" rel="noreferrer" class="mb-secondary">Directions</a>
+</div>
+
+<!-- ──────────────────────────────────
+     JAVASCRIPT
+────────────────────────────────── -->
+<script>
+(function(){
+  "use strict";
+
+  // Device optimization
+  const isTouch = window.innerWidth < 768 || matchMedia('(pointer:coarse)').matches;
+  const STEP = isTouch ? 2 : 1; // Load every 2nd frame on mobile for smooth performance
+
+  // Frame sequence configuration (using only the single Frames folder)
+  const seqConfig = { key: 'hero', total: 210, base: 'Frames/Frame (' };
+  const st = { imgs: [], loaded: 0, total: 0, ready: false };
+
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Loader progress elements
+  const loaderBar = document.getElementById('loader-bar');
+  const loaderFill = document.getElementById('loader-bar-fill');
+  let totalToLoad = 0;
+  let totalLoaded = 0;
+
+  function onImageLoaded() {
+    totalLoaded++;
+    if (totalToLoad > 0) {
+      const pct = Math.min(100, Math.round((totalLoaded / totalToLoad) * 100));
+      loaderFill.style.width = pct + '%';
+      if (pct >= 100) {
+        setTimeout(() => loaderBar.classList.add('done'), 500);
+      }
+    }
+  }
+
+  function getIndices(total) {
+    const indices = [];
+    for (let i = 1; i <= total; i += STEP) {
+      indices.push(i);
+    }
+    if (indices[indices.length - 1] !== total) {
+      indices.push(total);
+    }
+    return indices;
+  }
+
+  function loadSequence() {
+    const indices = getIndices(seqConfig.total);
+    st.total = indices.length;
+    totalToLoad = indices.length;
+    st.imgs = new Array(indices.length).fill(null);
+
+    const BATCH = isTouch ? 6 : 12;
+    let indexPointer = 0;
+
+    function loadNextBatch() {
+      const limit = Math.min(indexPointer + BATCH, indices.length);
+      for (let i = indexPointer; i < limit; i++) {
+        const img = new Image();
+        const frameIndex = i;
+        img.src = seqConfig.base + indices[frameIndex] + ').jpg';
+        
+        img.onload = () => {
+          if (img.decode) {
+            img.decode().then(() => {
+              st.imgs[frameIndex] = img;
+              st.loaded++;
+              onImageLoaded();
+              
+              if (!st.ready && st.loaded > 5) {
+                st.ready = true;
+                drawCanvasFrame();
+              }
+            }).catch(() => {
+              st.imgs[frameIndex] = img;
+              st.loaded++;
+              onImageLoaded();
+            });
+          } else {
+            st.imgs[frameIndex] = img;
+            st.loaded++;
+            onImageLoaded();
+          }
+        };
+        img.onerror = () => {
+          st.loaded++;
+          onImageLoaded();
+        };
+      }
+      indexPointer = limit;
+      if (indexPointer < indices.length) {
+        setTimeout(loadNextBatch, 20);
+      }
+    }
+    loadNextBatch();
+  }
+
+  // Draw centered contain frame
+  let currentRenderedImg = null;
+  let lastRenderedIdx = -1;
+
+  function drawCanvasFrame() {
+    if (!canvas || !ctx || !st.ready) return;
+    
+    // Page overall scroll progress (0.0 to 1.0)
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return;
+    const progress = Math.max(0, Math.min(1, lastScrollY / maxScroll));
+
+    // Map progress smoothly across all loaded frames
+    const frameIdx = Math.max(0, Math.min(st.imgs.length - 1, Math.round(progress * (st.imgs.length - 1))));
+    const img = st.imgs[frameIdx];
+
+    if (!img) return;
+    if (frameIdx === lastRenderedIdx) return;
+    lastRenderedIdx = frameIdx;
+    currentRenderedImg = img;
+
+    const cw = canvas.width;
+    const ch = canvas.height;
+
+    // Preserve aspect ratio perfectly (contain)
+    const scale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+    const dw = img.naturalWidth * scale;
+    const dh = img.naturalHeight * scale;
+
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }
+
+  function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+      lastRenderedIdx = -1;
+      drawCanvasFrame();
+    }
+  }
+
+  // Linear interpolation for smooth scrolling response
+  let lastScrollY = window.scrollY;
+  function tick() {
+    if (Math.abs(window.scrollY - lastScrollY) > 0.3) {
+      lastScrollY += (window.scrollY - lastScrollY) * 0.12;
+      drawCanvasFrame();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Start initialization
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('scroll', () => {
+    // scroll event just updates value, requestAnimationFrame handles drawing
+  }, { passive: true });
+
+  loadSequence();
+  requestAnimationFrame(tick);
+
+  /* ════════════════════════════════════
+     NAVIGATION ACTIVE TRACKING
+  ════════════════════════════════════ */
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = ['hero', 'philosophy', 'menu', 'reviews', 'location'];
+
+  function updateNav() {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+
+    let activeId = 'hero';
+    const scrollPos = window.scrollY + window.innerHeight * 0.4;
+
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.offsetTop;
+        const bottom = top + el.offsetHeight;
+        if (scrollPos >= top && scrollPos < bottom) {
+          activeId = id;
+          break;
+        }
+      }
+    }
+
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('data-target') === activeId);
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const targetId = link.getAttribute('data-target');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        window.scrollTo({
+          top: targetEl.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  /* ════════════════════════════════════
+     MARQUEE TRACK GENERATION
+  ════════════════════════════════════ */
+  const marqueeItems = [
+    'Radha Krishna Pure Veg', '·',
+    'North & South Indian Cuisine', '·',
+    'Daily 9:30 AM – 11 PM', '·',
+    'Dighi, Pune', '·',
+    'Call +91 78750 06807', '·'
+  ];
+  const track = document.getElementById('marquee-track');
+  for (let i = 0; i < 6; i++) {
+    marqueeItems.forEach(item => {
+      const span = document.createElement('span');
+      span.textContent = item;
+      if (item === '·') span.style.opacity = '0.4';
+      track.appendChild(span);
+    });
+  }
+
+  /* ════════════════════════════════════
+     REVEAL ANIMATIONS INTERSECTION OBSERVER
+  ════──────────────────────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+})();
+</script>
+</body>
+</html>
