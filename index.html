@@ -1010,7 +1010,7 @@ footer {
   const STEP = isTouch ? 2 : 1; // Load every 2nd frame on mobile for smooth performance
 
   // Frame sequence configuration (using only the single Frames folder)
-  const seqConfig = { key: 'hero', total: 210, base: 'Frames/Frame (' };
+  const seqConfig = { key: 'hero', total: 270, base: 'Frames/ezgif-frame-' };
   const st = { imgs: [], loaded: 0, total: 0, ready: false };
 
   const canvas = document.getElementById('bg-canvas');
@@ -1058,7 +1058,8 @@ footer {
       for (let i = indexPointer; i < limit; i++) {
         const img = new Image();
         const frameIndex = i;
-        img.src = seqConfig.base + indices[frameIndex] + ').jpg';
+        const frameNum = String(indices[frameIndex]).padStart(3, '0');
+        img.src = seqConfig.base + frameNum + '.jpg';
         
         img.onload = () => {
           if (img.decode) {
