@@ -269,12 +269,12 @@ button {
   gap: 4px;
 }
 .nav-link {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cream-dim);
-  padding: 8px 16px;
+  padding: 8px 20px;
   position: relative;
   transition: color 0.3s;
 }
@@ -285,7 +285,7 @@ button {
   left: 50%;
   transform: translateX(-50%);
   width: 0;
-  height: 1px;
+  height: 1.5px;
   background-color: var(--gold);
   transition: width 0.3s;
 }
@@ -293,27 +293,29 @@ button {
   color: var(--cream);
 }
 .nav-link:hover::after, .nav-link.active::after {
-  width: 40%;
+  width: 50%;
 }
 .nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 20px;
+  padding: 10px 24px;
   border-radius: 99px;
-  border: 1px solid rgba(212, 163, 67, 0.35);
-  background: rgba(212, 163, 67, 0.08);
-  font-size: 10px;
+  border: 1px solid var(--gold);
+  background: rgba(222, 219, 200, 0.12);
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
-  transition: all 0.3s ease;
+  color: var(--gold-bright);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 .nav-cta:hover {
   background: var(--gold);
-  color: var(--black);
-  border-color: var(--gold);
+  color: #000000;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(222, 219, 200, 0.3);
 }
 .mobile-btn {
   display: none;
@@ -337,7 +339,7 @@ button {
 ───────────────────────────────────── */
 .section {
   position: relative;
-  padding: 100px 48px;
+  padding: 120px 48px;
   max-width: 1200px;
   margin: 0 auto;
   min-height: 80vh;
@@ -350,7 +352,7 @@ button {
 ───────────────────────────────────── */
 #hero {
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 160px;
   justify-content: center;
   text-align: center;
   position: relative;
@@ -361,20 +363,20 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(90vw, 750px);
-  height: min(90vw, 750px);
-  background: radial-gradient(circle, rgba(212, 163, 67, 0.15) 0%, rgba(212, 163, 67, 0.05) 35%, transparent 70%);
+  width: min(95vw, 850px);
+  height: min(95vw, 850px);
+  background: radial-gradient(circle, rgba(222, 219, 200, 0.18) 0%, rgba(222, 219, 200, 0.06) 35%, transparent 75%);
   pointer-events: none;
   z-index: 1;
   border-radius: 50%;
-  filter: blur(24px);
+  filter: blur(28px);
 }
 .hero-content {
-  max-width: 680px;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   position: relative;
   z-index: 2;
 }
@@ -382,12 +384,12 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 9px 20px;
   border-radius: 99px;
-  background: rgba(212, 163, 67, 0.06);
-  border: 1px solid rgba(212, 163, 67, 0.3);
-  box-shadow: 0 4px 20px rgba(3, 2, 2, 0.7), inset 0 1px 0 rgba(212, 163, 67, 0.15);
-  font-size: 9px;
+  background: rgba(222, 219, 200, 0.08);
+  border: 1px solid rgba(222, 219, 200, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(222, 219, 200, 0.2);
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -396,47 +398,47 @@ button {
   -webkit-backdrop-filter: blur(12px);
 }
 .hero-badge .dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--gold);
-  box-shadow: 0 0 6px var(--gold);
+  box-shadow: 0 0 8px var(--gold);
 }
 #hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
   color: var(--cream);
-  text-shadow: 0 4px 18px rgba(3, 2, 2, 0.95), 0 12px 35px rgba(3, 2, 2, 0.7);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.98), 0 12px 40px rgba(0, 0, 0, 0.85);
 }
 #hero h1 em {
   font-style: italic;
   font-weight: 400;
   color: var(--gold);
-  text-shadow: 0 4px 18px rgba(3, 2, 2, 0.95), 0 0 30px rgba(212, 163, 67, 0.35);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.98), 0 0 35px rgba(222, 219, 200, 0.4);
 }
 .hero-desc {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 300;
-  line-height: 1.7;
-  color: rgba(244, 238, 227, 0.85);
-  max-width: 500px;
-  text-shadow: 0 2px 10px rgba(3, 2, 2, 0.95);
+  line-height: 1.75;
+  color: rgba(225, 224, 204, 0.9);
+  max-width: 540px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.98);
 }
 .hero-ctas {
   display: flex;
-  gap: 16px;
-  margin-top: 10px;
+  gap: 18px;
+  margin-top: 12px;
 }
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: 99px;
-  font-size: 10px;
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -446,8 +448,8 @@ button {
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-  color: var(--black);
-  box-shadow: 0 10px 30px rgba(212, 163, 67, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #000000;
+  box-shadow: 0 12px 35px rgba(222, 219, 200, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 .btn-primary::after {
   content: '';
@@ -456,7 +458,7 @@ button {
   left: -50%;
   width: 25%;
   height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.45), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-30deg);
   animation: shine 5s infinite ease-in-out;
 }
@@ -467,23 +469,23 @@ button {
 }
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(212, 163, 67, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(222, 219, 200, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .btn-secondary {
-  border: 1px solid rgba(244, 238, 227, 0.25);
+  border: 1px solid rgba(225, 224, 204, 0.35);
   color: var(--cream);
-  background: rgba(3, 2, 2, 0.45);
+  background: rgba(16, 16, 16, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 25px rgba(3, 2, 2, 0.6);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85);
 }
 .btn-secondary:hover {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(212, 163, 67, 0.08);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(212, 163, 67, 0.18);
+  background: rgba(222, 219, 200, 0.08);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(222, 219, 200, 0.2);
 }
 
 /* ─────────────────────────────────────
@@ -1017,6 +1019,7 @@ footer {
   <ul class="nav-links">
     <li><button class="nav-link active" data-target="hero">Home</button></li>
     <li><button class="nav-link" data-target="philosophy">Philosophy</button></li>
+    <li><button class="nav-link" data-target="craft">The Craft</button></li>
     <li><button class="nav-link" data-target="menu">Signature</button></li>
     <li><button class="nav-link" data-target="reviews">Reviews</button></li>
     <li><button class="nav-link" data-target="location">Visit</button></li>
@@ -1078,6 +1081,56 @@ footer {
       <div class="phil-card">
         <h3>Fast Service</h3>
         <p>Fast and warm service keeping our regulars happy all week long.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE CRAFT SECTION (High-end storytelling layout) -->
+<section id="craft" class="section">
+  <div class="philosophy-grid">
+    <div class="reveal">
+      <div class="eyebrow">Our Sacred Craft</div>
+      <h2 class="section-title" style="margin-top: 12px">Pure Ingredients.<br><em>Traditional Alchemy.</em></h2>
+      <p class="section-body" style="margin-top: 16px; margin-bottom: 24px; font-size: 1.1rem; color: rgba(225, 224, 204, 0.85);">
+        At Radha Krishna, we believe that cooking is not just preparation, but a preservation of culinary heritage. Every flavor has a lineage; every recipe tells a story of pure vegetarian integrity.
+      </p>
+      
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="location-card">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div class="location-title">01 / A2 Cow Ghee & Cold-Pressed Oils</div>
+            <p style="font-size: 0.95rem; color: var(--cream-dim); font-weight: 300; line-height: 1.6;">We cook exclusively with premium A2 Cow Ghee and cold-pressed mustard & peanut oils, offering pristine health and rich aroma in every bite.</p>
+          </div>
+        </div>
+        <div class="location-card">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div class="location-title">02 / Hand-Ground Stone Mortar Spices</div>
+            <p style="font-size: 0.95rem; color: var(--cream-dim); font-weight: 300; line-height: 1.6;">We reject factory-made powders. Our masalas are hand-ground daily in stone mortar grinders to release organic essential oils and authentic depth.</p>
+          </div>
+        </div>
+        <div class="location-card">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div class="location-title">03 / Dawn-Harvest Organic Produce</div>
+            <p style="font-size: 0.95rem; color: var(--cream-dim); font-weight: 300; line-height: 1.6;">Vibrant vegetables and farm-fresh cottage cheese (paneer) are sourced from local organic cooperatives in Pune and delivered to our kitchen at dawn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="reveal" style="position: relative; width: 100%;">
+      <div class="menu-item" style="padding: 0; overflow: hidden; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.85);">
+        <div style="aspect-ratio: 4/5; overflow: hidden; position: relative;">
+          <img src="https://images.unsplash.com/photo-1596790011462-8430396f2aae?q=80&w=900&auto=format&fit=crop" 
+               alt="Sacred Spices in Mortar" 
+               style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" 
+               class="zoom-hover-img" />
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);"></div>
+          <div style="position: absolute; bottom: 32px; left: 32px; right: 32px;">
+            <div class="eyebrow" style="color: var(--gold-bright);">Kitchen Secrets</div>
+            <h3 style="font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: #ffffff; margin-top: 8px;">The Taste of Pure Devotion</h3>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1200,6 +1253,28 @@ footer {
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.1694987305255!2d73.87400891489576!3d18.603261887324726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7e8e3c1a1ab%3A0x7a4b2b2b4b2b2b2b!2sDighi%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
         loading="lazy">
       </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ORDER NOW CALL TO ACTION SECTION (High-contrast, Clear CTA) -->
+<section id="order-now" class="section" style="padding: 100px 24px; min-height: auto;">
+  <div class="menu-item" style="width: 100%; border-radius: 28px; padding: 64px 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.85); background: linear-gradient(135deg, rgba(222, 219, 200, 0.08) 0%, rgba(16, 16, 16, 0.95) 100%);">
+    <div class="eyebrow" style="color: var(--gold-bright);">Experience Legendary Flavor</div>
+    <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.8rem); max-width: 680px; line-height: 1.1;">Ready to Taste the <em>Traditional Soul</em>?</h2>
+    <p class="section-body" style="max-width: 500px; font-size: 1.1rem; color: rgba(225, 224, 204, 0.85);">
+      Call us directly to place your order or query our chef's daily specials. We prepare every plate fresh upon request.
+    </p>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; position: relative; z-index: 2;">
+      <a href="tel:+917875006807" class="btn btn-primary" style="font-size: 15px; padding: 18px 48px; box-shadow: 0 15px 40px rgba(222, 219, 200, 0.45);">
+        <span>Call to Order Now</span>
+      </a>
+      <a href="https://maps.app.goo.gl/SzH3da3MRw1kmgxo9" target="_blank" rel="noreferrer" class="btn btn-secondary" style="font-size: 15px; padding: 18px 48px;">
+        <span>Get Live Location</span>
+      </a>
+    </div>
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cream-dim); margin-top: 10px;">
+      Open Daily: 9:30 AM – 11:00 PM • Fast Warm Delivery & Takeaway
     </div>
   </div>
 </section>
