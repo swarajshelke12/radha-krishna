@@ -8,23 +8,23 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ─────────────────────────────────────
    DESIGN SYSTEM & TOKENS
 ───────────────────────────────────── */
 :root {
-  --black: #030202;
-  --surface: rgba(12, 10, 9, 0.65);
-  --surface-solid: #0c0a09;
-  --gold: #d4a343;
-  --gold-bright: #f0c265;
-  --cream: #f4eee3;
-  --cream-dim: rgba(244, 238, 227, 0.7);
-  --cream-faint: rgba(244, 238, 227, 0.3);
-  --serif: 'Playfair Display', Georgia, serif;
+  --black: #000000;
+  --surface: rgba(16, 16, 16, 0.65);
+  --surface-solid: #101010;
+  --surface-card: #212121;
+  --gold: #DEDBC8;
+  --gold-bright: #E1E0CC;
+  --cream: #E1E0CC;
+  --cream-dim: rgba(225, 224, 204, 0.8);
+  --cream-faint: rgba(225, 224, 204, 0.4);
+  --serif: 'Instrument Serif', Georgia, serif;
   --sans: 'Inter', system-ui, sans-serif;
-  --display: 'Bebas Neue', sans-serif;
 }
 
 /* ─────────────────────────────────────
@@ -124,6 +124,45 @@ button {
 /* ─────────────────────────────────────
    TYPOGRAPHY & UTILITIES
 ───────────────────────────────────── */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.1) 80%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 999;
+}
 .eyebrow {
   font-size: 10px;
   font-weight: 700;
@@ -165,21 +204,45 @@ button {
 ───────────────────────────────────── */
 #nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 1000px;
   z-index: 900;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 48px;
-  transition: all 0.4s ease;
+  padding: 12px 28px;
+  border-radius: 99px;
+  background: rgba(16, 16, 16, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 12px 40px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 #nav.scrolled {
-  padding: 16px 48px;
-  background: rgba(3, 2, 2, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(212, 163, 67, 0.12);
+  background: rgba(10, 10, 10, 0.85);
+  padding: 10px 24px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 15px 50px rgba(0, 0, 0, 0.85);
 }
 .logo {
   display: flex;
@@ -450,32 +513,49 @@ button {
   100% { transform: translate3d(-50%, 0, 0); }
 }
 
-/* ─────────────────────────────────────
-   PHILOSOPHY (CLEAN GLASS CARDS)
-───────────────────────────────────── */
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  width: 100%;
-}
-.phil-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
 .phil-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 238, 227, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
   padding: 24px;
   border-radius: 16px;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phil-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .phil-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 16px 40px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.03);
+}
+.phil-card:hover::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 .phil-card h3 {
   font-size: 11px;
@@ -514,19 +594,49 @@ button {
   width: 100%;
 }
 .menu-item {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 238, 227, 0.08);
-  border-radius: 20px;
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
   overflow: hidden;
+  border-radius: 20px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
+.menu-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
 .menu-item:hover {
   transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 16px 45px rgba(0, 0, 0, 0.65);
+  background: rgba(255, 255, 255, 0.03);
+}
+.menu-item:hover::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 .menu-img-container {
   position: relative;
@@ -605,15 +715,52 @@ button {
   width: 100%;
 }
 .review-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 238, 227, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
   padding: 24px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.review-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 16px 40px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.03);
+}
+.review-card:hover::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 .review-text {
   font-size: 0.85rem;
@@ -661,11 +808,48 @@ button {
 .location-card {
   display: flex;
   gap: 16px;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.015);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 238, 227, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
   padding: 20px;
   border-radius: 14px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.location-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 12px 35px rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.03);
+}
+.location-card:hover::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 .location-icon {
   font-size: 1.25rem;
@@ -813,6 +997,7 @@ footer {
 </style>
 </head>
 <body>
+<div class="bg-noise"></div>
 
 <!-- LOADER BAR -->
 <div id="loader-bar"><div id="loader-bar-fill"></div></div>
