@@ -290,89 +290,137 @@ button {
   padding-top: 140px;
   justify-content: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow-spotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 750px);
+  height: min(90vw, 750px);
+  background: radial-gradient(circle, rgba(212, 163, 67, 0.15) 0%, rgba(212, 163, 67, 0.05) 35%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(24px);
 }
 .hero-content {
   max-width: 680px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
 }
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 8px;
+  padding: 8px 18px;
   border-radius: 99px;
-  background: rgba(244, 238, 227, 0.04);
-  border: 1px solid rgba(244, 238, 227, 0.1);
+  background: rgba(212, 163, 67, 0.06);
+  border: 1px solid rgba(212, 163, 67, 0.3);
+  box-shadow: 0 4px 20px rgba(3, 2, 2, 0.7), inset 0 1px 0 rgba(212, 163, 67, 0.15);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .hero-badge .dot {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
 }
 #hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  text-shadow: 0 4px 18px rgba(3, 2, 2, 0.95), 0 12px 35px rgba(3, 2, 2, 0.7);
 }
 #hero h1 em {
   font-style: italic;
   font-weight: 400;
   color: var(--gold);
+  text-shadow: 0 4px 18px rgba(3, 2, 2, 0.95), 0 0 30px rgba(212, 163, 67, 0.35);
 }
 .hero-desc {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 300;
-  line-height: 1.65;
-  color: var(--cream-dim);
-  max-width: 480px;
+  line-height: 1.7;
+  color: rgba(244, 238, 227, 0.85);
+  max-width: 500px;
+  text-shadow: 0 2px 10px rgba(3, 2, 2, 0.95);
 }
 .hero-ctas {
   display: flex;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 16px;
+  margin-top: 10px;
 }
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
+  padding: 14px 32px;
   border-radius: 99px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  transition: all 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 .btn-primary {
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
   color: var(--black);
-  box-shadow: 0 8px 24px rgba(212, 163, 67, 0.2);
+  box-shadow: 0 10px 30px rgba(212, 163, 67, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-30deg);
+  animation: shine 5s infinite ease-in-out;
+}
+@keyframes shine {
+  0% { left: -50%; }
+  35% { left: 150%; }
+  100% { left: 150%; }
 }
 .btn-primary:hover {
-  background: var(--gold-bright);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(212, 163, 67, 0.3);
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(212, 163, 67, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 .btn-secondary {
-  border: 1px solid rgba(244, 238, 227, 0.2);
+  border: 1px solid rgba(244, 238, 227, 0.25);
   color: var(--cream);
-  backdrop-filter: blur(8px);
+  background: rgba(3, 2, 2, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(3, 2, 2, 0.6);
 }
 .btn-secondary:hover {
   border-color: var(--gold);
   color: var(--gold);
-  transform: translateY(-2px);
+  background: rgba(212, 163, 67, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(212, 163, 67, 0.18);
 }
 
 /* ─────────────────────────────────────
@@ -797,6 +845,7 @@ footer {
 
 <!-- 1. HERO SECTION (Precise & Concise) -->
 <section id="hero" class="section">
+  <div class="hero-glow-spotlight"></div>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
