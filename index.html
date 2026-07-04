@@ -1120,12 +1120,11 @@ footer {
     const cw = canvas.width;
     const ch = canvas.height;
 
-    // Preserve aspect ratio perfectly (contain)
-    const scale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+    // Cover the screen fully (no black borders) and scale up slightly (by 5%) to crop out the watermark logo
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 1.05;
     const dw = img.naturalWidth * scale;
     const dh = img.naturalHeight * scale;
 
-    ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
   }
 
