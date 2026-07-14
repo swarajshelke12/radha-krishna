@@ -106,15 +106,16 @@
         background:
           radial-gradient(
             circle at center,
-            transparent 20%,
-            rgba(10, 9, 8, 0.75) 85%
+            rgba(10, 9, 8, 0.25) 0%,
+            rgba(10, 9, 8, 0.65) 50%,
+            rgba(10, 9, 8, 0.85) 85%
           ),
           linear-gradient(
             to bottom,
-            rgba(10, 9, 8, 0.4) 0%,
-            transparent 15%,
-            transparent 85%,
-            rgba(10, 9, 8, 0.8) 100%
+            rgba(10, 9, 8, 0.5) 0%,
+            rgba(10, 9, 8, 0.15) 12%,
+            rgba(10, 9, 8, 0.15) 88%,
+            rgba(10, 9, 8, 0.85) 100%
           );
       }
 
@@ -383,6 +384,20 @@
         display: flex;
         align-items: center;
       }
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 40px -24px;
+        background: rgba(10, 9, 8, 0.4);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border-radius: 32px;
+        z-index: -1;
+        pointer-events: none;
+      }
+      #hero::before {
+        display: none;
+      }
 
       /* ─────────────────────────────────────
    HERO SECTION (CONCISE & PRECISE)
@@ -421,6 +436,11 @@
         gap: 28px;
         position: relative;
         z-index: 2;
+        padding: 48px 40px;
+        border-radius: 32px;
+        background: rgba(10, 9, 8, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
       .hero-badge {
         display: inline-flex;
@@ -465,7 +485,7 @@
         font-size: 1.15rem;
         font-weight: 300;
         line-height: 1.75;
-        color: rgba(242, 237, 230, 0.9);
+        color: rgba(242, 237, 230, 0.92);
         max-width: 540px;
       }
       .hero-ctas {
@@ -1054,7 +1074,7 @@
 ───────────────────────────────────── */
       @media (max-width: 1023px) {
         #nav {
-          padding: 18px 24px;
+          padding: 14px 20px;
         }
         .nav-links,
         .nav-cta {
@@ -1064,16 +1084,16 @@
           display: flex !important;
           flex-direction: column;
           position: fixed;
-          top: 90px;
-          left: 20px;
-          width: calc(100% - 40px);
-          background: rgba(16, 16, 16, 0.95);
+          top: 80px;
+          left: 16px;
+          width: calc(100% - 32px);
+          background: rgba(16, 16, 16, 0.96);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 24px;
-          border-radius: 24px;
+          padding: 20px;
+          border-radius: 20px;
           box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 20px 50px rgba(0, 0, 0, 0.9);
-          gap: 12px;
+          gap: 8px;
           align-items: center;
           z-index: 999;
         }
@@ -1087,23 +1107,119 @@
           transform: translateY(-3px) rotate(-45deg);
         }
         .section {
-          padding: 80px 24px;
+          padding: 80px 20px;
+          min-height: auto;
+        }
+        #hero {
+          padding-top: 120px;
+          min-height: 100vh;
+          min-height: 100dvh;
+        }
+        #hero h1 {
+          font-size: clamp(2.2rem, 8vw, 3.5rem);
+        }
+        .hero-desc {
+          font-size: 1rem;
+          line-height: 1.65;
+        }
+        .hero-ctas {
+          flex-direction: column;
+          width: 100%;
+          max-width: 320px;
+          gap: 12px;
+        }
+        .hero-ctas .btn {
+          width: 100%;
+          justify-content: center;
+          padding: 14px 28px;
+        }
+        .hero-badge {
+          font-size: 10px;
+          padding: 7px 16px;
         }
         .philosophy-grid,
         .location-grid {
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 32px;
         }
-        .menu-grid,
+        .menu-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
         .reviews-grid {
           grid-template-columns: 1fr;
-          gap: 20px;
+          gap: 16px;
+        }
+        .section-title {
+          font-size: clamp(1.6rem, 5vw, 2.4rem);
+        }
+        .section-body {
+          font-size: 0.9rem;
         }
         footer {
-          padding: 40px 24px 80px;
+          padding: 40px 20px 90px;
+        }
+        .footer-container {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
         }
         .mobile-bar {
           display: flex;
+        }
+        .location-map-container {
+          height: 260px;
+        }
+      }
+
+      /* Small phones */
+      @media (max-width: 480px) {
+        .section {
+          padding: 60px 16px;
+        }
+        #hero {
+          padding-top: 100px;
+        }
+        #hero h1 {
+          font-size: clamp(1.8rem, 9vw, 2.6rem);
+        }
+        .hero-desc {
+          font-size: 0.92rem;
+        }
+        .hero-content {
+          gap: 20px;
+        }
+        .menu-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .menu-details {
+          padding: 16px;
+        }
+        .menu-details h3 {
+          font-size: 1.15rem;
+        }
+        .phil-card {
+          padding: 18px;
+        }
+        .review-card {
+          padding: 18px;
+        }
+        .location-card {
+          padding: 16px;
+        }
+        .location-map-container {
+          height: 220px;
+        }
+        .section-title {
+          font-size: clamp(1.5rem, 7vw, 2rem);
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 6px;
+        }
+        .eyebrow {
+          font-size: 9px;
         }
       }
     </style>
@@ -1666,9 +1782,10 @@
         // Device optimization
         const isTouch =
           window.innerWidth < 768 || matchMedia("(pointer:coarse)").matches;
-        const STEP = isTouch ? 2 : 1; // Load every 2nd frame on mobile for smooth performance
+        const STEP = isTouch ? 4 : 2; // Load every 4th frame on mobile, every 2nd on desktop
+        const FRAME_START = 15; // Frames actually start at 015
 
-        // Frame sequence configuration (using only the single Frames folder)
+        // Frame sequence configuration
         const seqConfig = {
           key: "hero",
           total: 270,
@@ -1701,7 +1818,7 @@
 
         function getIndices(total) {
           const indices = [];
-          for (let i = 1; i <= total; i += STEP) {
+          for (let i = FRAME_START; i <= total; i += STEP) {
             indices.push(i);
           }
           if (indices[indices.length - 1] !== total) {
@@ -1716,53 +1833,75 @@
           totalToLoad = indices.length;
           st.imgs = new Array(indices.length).fill(null);
 
-          const BATCH = isTouch ? 6 : 12;
-          let indexPointer = 0;
+          const PRIORITY_COUNT = Math.min(isTouch ? 8 : 15, indices.length);
+          const BATCH = isTouch ? 10 : 24;
 
-          function loadNextBatch() {
-            const limit = Math.min(indexPointer + BATCH, indices.length);
-            for (let i = indexPointer; i < limit; i++) {
-              const img = new Image();
-              const frameIndex = i;
-              const frameNum = String(indices[frameIndex]).padStart(3, "0");
-              img.src = seqConfig.base + frameNum + ".jpg";
+          function loadSingleFrame(i, callback) {
+            const img = new Image();
+            const frameNum = String(indices[i]).padStart(3, "0");
+            img.src = seqConfig.base + frameNum + ".jpg";
 
-              img.onload = () => {
-                if (img.decode) {
-                  img
-                    .decode()
-                    .then(() => {
-                      st.imgs[frameIndex] = img;
-                      st.loaded++;
-                      onImageLoaded();
-
-                      if (!st.ready && st.loaded > 5) {
-                        st.ready = true;
-                        drawCanvasFrame();
-                      }
-                    })
-                    .catch(() => {
-                      st.imgs[frameIndex] = img;
-                      st.loaded++;
-                      onImageLoaded();
-                    });
-                } else {
-                  st.imgs[frameIndex] = img;
+            img.onload = () => {
+              if (img.decode) {
+                img.decode().then(() => {
+                  st.imgs[i] = img;
                   st.loaded++;
                   onImageLoaded();
-                }
-              };
-              img.onerror = () => {
+                  if (!st.ready && st.loaded > 2) {
+                    st.ready = true;
+                    drawCanvasFrame();
+                  }
+                  if (callback) callback();
+                }).catch(() => {
+                  st.imgs[i] = img;
+                  st.loaded++;
+                  onImageLoaded();
+                  if (callback) callback();
+                });
+              } else {
+                st.imgs[i] = img;
                 st.loaded++;
                 onImageLoaded();
-              };
-            }
-            indexPointer = limit;
-            if (indexPointer < indices.length) {
-              setTimeout(loadNextBatch, 20);
-            }
+                if (!st.ready && st.loaded > 2) {
+                  st.ready = true;
+                  drawCanvasFrame();
+                }
+                if (callback) callback();
+              }
+            };
+            img.onerror = () => {
+              st.loaded++;
+              onImageLoaded();
+              if (callback) callback();
+            };
           }
-          loadNextBatch();
+
+          // Phase 1: Priority-load the first few frames immediately (no delay)
+          let priorityLoaded = 0;
+          for (let i = 0; i < PRIORITY_COUNT; i++) {
+            loadSingleFrame(i, () => {
+              priorityLoaded++;
+              if (priorityLoaded >= PRIORITY_COUNT) {
+                // Phase 2: Load remaining frames in batches
+                loadRemainingBatches(PRIORITY_COUNT);
+              }
+            });
+          }
+
+          function loadRemainingBatches(startIdx) {
+            let indexPointer = startIdx;
+            function loadNextBatch() {
+              const limit = Math.min(indexPointer + BATCH, indices.length);
+              for (let i = indexPointer; i < limit; i++) {
+                loadSingleFrame(i);
+              }
+              indexPointer = limit;
+              if (indexPointer < indices.length) {
+                setTimeout(loadNextBatch, 10);
+              }
+            }
+            loadNextBatch();
+          }
         }
 
         // Draw centered contain frame
