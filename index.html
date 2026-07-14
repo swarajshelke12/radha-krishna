@@ -20,15 +20,20 @@
    DESIGN SYSTEM & TOKENS
 ───────────────────────────────────── */
       :root {
-        --black: #000000;
-        --surface: rgba(16, 16, 16, 0.65);
-        --surface-solid: #101010;
-        --surface-card: #212121;
-        --gold: #dedbc8;
-        --gold-bright: #e1e0cc;
-        --cream: #e1e0cc;
-        --cream-dim: rgba(225, 224, 204, 0.8);
-        --cream-faint: rgba(225, 224, 204, 0.4);
+        --black: #0a0908;
+        --surface: rgba(16, 14, 12, 0.65);
+        --surface-solid: #100e0c;
+        --surface-card: #1e1a17;
+        --gold: #D5A18E;
+        --gold-bright: #F5D4C3;
+        --cream: #F0E4DE;
+        --cream-dim: rgba(222, 195, 190, 0.85);
+        --cream-faint: rgba(200, 219, 215, 0.45);
+        --rose: #C23C5A;
+        --teal-deep: #3C5556;
+        --sage: #C8DBD7;
+        --terracotta: #D5A18E;
+        --blush: #F6EFE7;
         --serif: "Instrument Serif", Georgia, serif;
         --sans: "Inter", system-ui, sans-serif;
       }
@@ -45,7 +50,7 @@
       }
       html {
         scroll-behavior: smooth;
-        background-color: var(--black);
+        background-color: #0a0908;
         color: var(--cream);
         font-family: var(--sans);
         font-size: 16px;
@@ -70,7 +75,7 @@
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: var(--black);
+        background: #0a0908;
       }
       ::-webkit-scrollbar-thumb {
         background: var(--gold);
@@ -86,7 +91,7 @@
         width: 100vw;
         height: 100vh;
         z-index: -2;
-        background-color: var(--black);
+        background-color: #0a0908;
         overflow: hidden;
       }
       #bg-canvas {
@@ -104,14 +109,14 @@
           radial-gradient(
             circle at center,
             transparent 20%,
-            rgba(3, 2, 2, 0.75) 85%
+            rgba(10, 9, 8, 0.75) 85%
           ),
           linear-gradient(
             to bottom,
-            rgba(3, 2, 2, 0.4) 0%,
+            rgba(10, 9, 8, 0.4) 0%,
             transparent 15%,
             transparent 85%,
-            rgba(3, 2, 2, 0.8) 100%
+            rgba(10, 9, 8, 0.8) 100%
           );
       }
 
@@ -137,11 +142,11 @@
         width: 0%;
         background: linear-gradient(
           90deg,
-          var(--gold),
+          var(--rose),
           var(--gold-bright),
-          var(--gold)
+          var(--rose)
         );
-        box-shadow: 0 0 8px var(--gold);
+        box-shadow: 0 0 8px var(--rose);
         transition: width 0.2s ease;
       }
 
@@ -216,7 +221,7 @@
       .section-title em {
         font-style: italic;
         font-weight: 400;
-        color: var(--gold);
+        color: var(--rose);
       }
       .section-body {
         font-size: 0.95rem;
@@ -335,8 +340,8 @@
         gap: 8px;
         padding: 10px 24px;
         border-radius: 99px;
-        border: 1px solid var(--gold);
-        background: rgba(222, 219, 200, 0.12);
+        border: 1px solid var(--rose);
+        background: rgba(194, 60, 90, 0.12);
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 0.12em;
@@ -346,10 +351,10 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       }
       .nav-cta:hover {
-        background: var(--gold);
-        color: #000000;
+        background: var(--rose);
+        color: #fff;
         transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(222, 219, 200, 0.3);
+        box-shadow: 0 8px 25px rgba(194, 60, 90, 0.35);
       }
       .mobile-btn {
         display: none;
@@ -401,8 +406,8 @@
         height: min(95vw, 850px);
         background: radial-gradient(
           circle,
-          rgba(222, 219, 200, 0.18) 0%,
-          rgba(222, 219, 200, 0.06) 35%,
+          rgba(213, 161, 142, 0.18) 0%,
+          rgba(194, 60, 90, 0.06) 35%,
           transparent 75%
         );
         pointer-events: none;
@@ -425,11 +430,11 @@
         gap: 8px;
         padding: 9px 20px;
         border-radius: 99px;
-        background: rgba(222, 219, 200, 0.08);
-        border: 1px solid rgba(222, 219, 200, 0.35);
+        background: rgba(194, 60, 90, 0.08);
+        border: 1px solid rgba(213, 161, 142, 0.4);
         box-shadow:
           0 4px 20px rgba(0, 0, 0, 0.85),
-          inset 0 1px 0 rgba(222, 219, 200, 0.2);
+          inset 0 1px 0 rgba(213, 161, 142, 0.2);
         font-size: 11.5px;
         font-weight: 700;
         letter-spacing: 0.25em;
@@ -442,8 +447,8 @@
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background-color: var(--gold);
-        box-shadow: 0 0 8px var(--gold);
+        background-color: var(--rose);
+        box-shadow: 0 0 8px var(--rose);
       }
       #hero h1 {
         font-family: var(--serif);
@@ -459,16 +464,16 @@
       #hero h1 em {
         font-style: italic;
         font-weight: 400;
-        color: var(--gold);
+        color: var(--rose);
         text-shadow:
           0 4px 20px rgba(0, 0, 0, 0.98),
-          0 0 35px rgba(222, 219, 200, 0.4);
+          0 0 35px rgba(194, 60, 90, 0.45);
       }
       .hero-desc {
         font-size: 1.15rem;
         font-weight: 300;
         line-height: 1.75;
-        color: rgba(225, 224, 204, 0.9);
+        color: rgba(222, 195, 190, 0.92);
         max-width: 540px;
         text-shadow: 0 2px 12px rgba(0, 0, 0, 0.98);
       }
@@ -492,11 +497,11 @@
         overflow: hidden;
       }
       .btn-primary {
-        background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-        color: #000000;
+        background: linear-gradient(135deg, var(--rose), #D94E6A);
+        color: #ffffff;
         box-shadow:
-          0 12px 35px rgba(222, 219, 200, 0.35),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+          0 12px 35px rgba(194, 60, 90, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.25);
       }
       .btn-primary::after {
         content: "";
@@ -526,33 +531,33 @@
         }
       }
       .btn-primary:hover {
-        background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+        background: linear-gradient(135deg, #D94E6A, var(--rose));
         transform: translateY(-3px) scale(1.03);
         box-shadow:
-          0 16px 40px rgba(222, 219, 200, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+          0 16px 40px rgba(194, 60, 90, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35);
       }
       .btn-secondary {
-        border: 1px solid rgba(225, 224, 204, 0.35);
+        border: 1px solid rgba(213, 161, 142, 0.35);
         color: var(--cream);
-        background: rgba(16, 16, 16, 0.85);
+        background: rgba(16, 14, 12, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85);
       }
       .btn-secondary:hover {
-        border-color: var(--gold);
-        color: var(--gold);
-        background: rgba(222, 219, 200, 0.08);
+        border-color: var(--terracotta);
+        color: var(--gold-bright);
+        background: rgba(213, 161, 142, 0.08);
         transform: translateY(-3px) scale(1.03);
-        box-shadow: 0 12px 35px rgba(222, 219, 200, 0.2);
+        box-shadow: 0 12px 35px rgba(213, 161, 142, 0.2);
       }
 
       /* ─────────────────────────────────────
    MARQUEE
 ───────────────────────────────────── */
       .marquee {
-        background: var(--gold);
+        background: linear-gradient(90deg, var(--rose), #D94E6A);
         padding: 12px 0;
         overflow: hidden;
         position: relative;
@@ -568,7 +573,7 @@
         font-weight: 800;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: var(--black);
+        color: #ffffff;
       }
       @keyframes scrollMarquee {
         0% {
@@ -735,7 +740,7 @@
         top: 12px;
         left: 12px;
         background: rgba(3, 2, 2, 0.8);
-        border: 1px solid rgba(212, 163, 67, 0.3);
+        border: 1px solid rgba(194, 60, 90, 0.3);
         padding: 4px 10px;
         border-radius: 99px;
         font-size: 8px;
@@ -975,7 +980,7 @@
    FOOTER
 ───────────────────────────────────── */
       footer {
-        background-color: var(--black);
+        background-color: #0a0908;
         border-top: 1px solid rgba(244, 238, 227, 0.06);
         padding: 60px 48px 40px;
       }
@@ -1013,9 +1018,9 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(3, 2, 2, 0.9);
+        background: rgba(10, 9, 8, 0.92);
         backdrop-filter: blur(20px);
-        border-top: 1px solid rgba(244, 238, 227, 0.08);
+        border-top: 1px solid rgba(213, 161, 142, 0.12);
         padding: 10px 16px;
         gap: 10px;
         z-index: 999;
@@ -1034,11 +1039,11 @@
         text-transform: uppercase;
       }
       .mb-primary {
-        background: var(--gold);
-        color: var(--black);
+        background: linear-gradient(135deg, var(--rose), #D94E6A);
+        color: #ffffff;
       }
       .mb-secondary {
-        border: 1px solid rgba(244, 238, 227, 0.15);
+        border: 1px solid rgba(213, 161, 142, 0.2);
       }
 
       /* ─────────────────────────────────────
@@ -1248,7 +1253,7 @@
           style="
             margin-top: 12px;
             font-size: 1.1rem;
-            color: rgba(225, 224, 204, 0.85);
+            color: rgba(222, 195, 190, 0.88);
           "
         >
           At Radha Krishna, we believe that cooking is not just preparation, but
@@ -1543,8 +1548,8 @@
           box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
           background: linear-gradient(
             135deg,
-            rgba(222, 219, 200, 0.08) 0%,
-            rgba(16, 16, 16, 0.95) 100%
+            rgba(194, 60, 90, 0.1) 0%,
+            rgba(16, 14, 12, 0.95) 100%
           );
         "
       >
@@ -1589,7 +1594,7 @@
             style="
               font-size: 15px;
               padding: 18px 48px;
-              box-shadow: 0 15px 40px rgba(222, 219, 200, 0.45);
+              box-shadow: 0 15px 40px rgba(194, 60, 90, 0.45);
             "
           >
             <span>Call to Order Now</span>
@@ -1825,8 +1830,13 @@
         // Linear interpolation for smooth scrolling response
         let lastScrollY = window.scrollY;
         function tick() {
-          if (Math.abs(window.scrollY - lastScrollY) > 0.3) {
-            lastScrollY += (window.scrollY - lastScrollY) * 0.12;
+          const delta = window.scrollY - lastScrollY;
+          if (Math.abs(delta) > 0.05) {
+            lastScrollY += delta * 0.18;
+            // Snap when close enough to avoid micro-drift
+            if (Math.abs(window.scrollY - lastScrollY) < 0.5) {
+              lastScrollY = window.scrollY;
+            }
             drawCanvasFrame();
           }
           requestAnimationFrame(tick);
