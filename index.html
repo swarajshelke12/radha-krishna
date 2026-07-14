@@ -995,11 +995,107 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
         font-size: 10px;
         color: var(--cream-faint);
         margin-top: 32px;
         padding-top: 20px;
         border-top: 1px solid rgba(244, 238, 227, 0.03);
+        gap: 12px;
+      }
+      .footer-links {
+        display: flex;
+        gap: 16px;
+        list-style: none;
+      }
+      .footer-links button {
+        text-transform: uppercase;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        transition: color 0.2s;
+      }
+      .footer-links button:hover {
+        color: var(--cream);
+      }
+
+      /* Legal Modal Styles */
+      .legal-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(10, 9, 8, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        padding: 24px;
+      }
+      .legal-modal.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .legal-modal-content {
+        background: var(--surface-solid);
+        border: 1px solid rgba(201, 169, 110, 0.2);
+        max-width: 600px;
+        width: 100%;
+        max-height: 80vh;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+      }
+      .legal-modal-header {
+        padding: 24px 28px;
+        border-bottom: 1px solid rgba(244, 238, 227, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .legal-modal-header h3 {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--cream);
+      }
+      .legal-modal-close {
+        font-size: 1.5rem;
+        color: var(--cream-faint);
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .legal-modal-close:hover {
+        color: var(--cream);
+      }
+      .legal-modal-body {
+        padding: 28px;
+        overflow-y: auto;
+        color: var(--cream-dim);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        font-weight: 300;
+      }
+      .legal-modal-body h4 {
+        color: var(--accent);
+        margin: 20px 0 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .legal-modal-body h4:first-of-type {
+        margin-top: 0;
+      }
+      .legal-modal-body p {
+        margin-bottom: 14px;
       }
 
       /* ─────────────────────────────────────
@@ -1737,10 +1833,60 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Radha Krishna Pure Veg.</span>
+        <span>© 2026 Radha Krishna Pure Veg™. All Rights Reserved.</span>
+        <ul class="footer-links">
+          <li><button id="btn-privacy">Privacy Policy</button></li>
+          <li><button id="btn-terms">Terms of Service</button></li>
+        </ul>
+        <span style="opacity: 0.7; text-align: center; display: block; max-width: 600px; margin: 8px auto 0; width: 100%;">All trademarks, logos, and culinary brand names are properties of their respective owners.</span>
         <span>Alandi Road, Dighi, Pune</span>
       </div>
     </footer>
+
+    <!-- LEGAL MODALS -->
+    <div id="modal-privacy" class="legal-modal">
+      <div class="legal-modal-content">
+        <div class="legal-modal-header">
+          <h3>Privacy Policy</h3>
+          <button class="legal-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="legal-modal-body">
+          <h4>1. Information Collection</h4>
+          <p>We collect minimal personal data necessary to process your food orders. This includes names, telephone numbers, and delivery addresses provided during your calls or orders.</p>
+          
+          <h4>2. Usage of Data</h4>
+          <p>Your details are solely utilized to prepare, dispatch, and confirm your culinary order. We do not sell, trade, or share your private credentials with third-party tracking services or marketing agencies.</p>
+          
+          <h4>3. Security & Safety</h4>
+          <p>We are fully committed to protecting our guests' transactional integrity. Safe storage guidelines are executed locally to prevent unauthorized leaks or usage.</p>
+          
+          <h4>4. Contact and Queries</h4>
+          <p>If you have any questions regarding how your details are held, please reach out to us at our main location on Alandi Road, Dighi, Pune.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-terms" class="legal-modal">
+      <div class="legal-modal-content">
+        <div class="legal-modal-header">
+          <h3>Terms of Service</h3>
+          <button class="legal-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="legal-modal-body">
+          <h4>1. Ordering & Processing</h4>
+          <p>Orders are prepared fresh daily upon request. Please review chef specials and detail any potential food allergies clearly on the call before ordering.</p>
+          
+          <h4>2. Pricing and Availability</h4>
+          <p>Prices are subject to seasonal menu adjustments. Delivery estimates depend on local traffic circumstances along Alandi Road and nearby areas.</p>
+          
+          <h4>3. Kitchen Availability</h4>
+          <p>Our standard kitchen hours are daily from 9:30 AM to 11:00 PM. Orders submitted close to or past closing time may be subject to next-morning processing.</p>
+          
+          <h4>4. Trademarks & Heritage</h4>
+          <p>All brand signatures, recipe names, visual frameworks, and original code elements remain the property of Radha Krishna Pure Veg™.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- MOBILE BOTTOM BAR -->
     <div class="mobile-bar">
@@ -2069,9 +2215,40 @@
           { threshold: 0.1 },
         );
 
-        document
-          .querySelectorAll(".reveal")
-          .forEach((el) => observer.observe(el));
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+        /* ════════════════════════════════════
+             LEGAL MODALS CONTROLLER
+        ════════════════════════════════════ */
+        const btnPrivacy = document.getElementById("btn-privacy");
+        const btnTerms = document.getElementById("btn-terms");
+        const modalPrivacy = document.getElementById("modal-privacy");
+        const modalTerms = document.getElementById("modal-terms");
+
+        function openModal(modal) {
+          if (modal) modal.classList.add("active");
+          document.body.style.overflow = "hidden"; // Prevent background scroll
+        }
+
+        function closeModal(modal) {
+          if (modal) modal.classList.remove("active");
+          document.body.style.overflow = ""; // Re-enable scroll
+        }
+
+        if (btnPrivacy) btnPrivacy.addEventListener("click", () => openModal(modalPrivacy));
+        if (btnTerms) btnTerms.addEventListener("click", () => openModal(modalTerms));
+
+        document.querySelectorAll(".legal-modal").forEach((modal) => {
+          // Close on clicking outside content area
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal(modal);
+          });
+          // Close on X button
+          const closeBtn = modal.querySelector(".legal-modal-close");
+          if (closeBtn) {
+            closeBtn.addEventListener("click", () => closeModal(modal));
+          }
+        });
       })();
     </script>
   </body>
